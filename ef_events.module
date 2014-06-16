@@ -5,3 +5,14 @@
  */
 
 include_once 'ef_events.features.inc';
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function ef_events_entity_info_alter(&$entity_info) {
+  if (isset($entity_info['registration'])) {
+    $entity_info['registration']['bundles']['paid_event'] = array(
+      'label' => t('Paid Event'),
+    );
+  }
+}
