@@ -7,12 +7,53 @@
 include_once 'ef_events.features.inc';
 
 /**
- * Implements hook_entity_info_alter().
+ * Implements hook_node_info().
  */
-function ef_events_entity_info_alter(&$entity_info) {
-  if (isset($entity_info['registration'])) {
-    $entity_info['registration']['bundles']['paid_event'] = array(
-      'label' => t('Paid Event'),
-    );
+function ef_events_node_info() {
+  $items = array(
+    'event_payable' => array(
+      'name' => t('Paid Event'),
+      'base' => 'node_content',
+      'description' => t('Post information about planned activities or meetings, which can be purchased.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_default_registration_type().
+ */
+function ef_events_default_registration_type() {
+  $items = array();
+  $items['paid_event'] = entity_import('registration_type', '{
+  "name" : "paid_event",
+  "label" : "Paid Event",
+  "locked" : "0",
+  "weight" : "0",
+  "data" : null,
+  "registration_commerce_settings" : {
+    "enable" : 1,
+    "price_defaults" : { "amount" : 0, "currency_code" : "USD" },
+    "purchasable_states" : { "complete" : "complete", "pending" : 0, "canceled" : 0 }
+  },
+  "rdf_mapping" : [],
+  "lingotek" : {
+    "name" : "",
+    "document_id" : null,
+    "lingotek_nodes_translation_method" : null,
+    "create_lingotek_document" : 0,
+    "sync_method" : 0,
+    "allow_community_translation" : 0,
+    "url_alias_translation" : 0,
+    "node_sync_status" : "EDITED",
+    "project_id" : null,
+    "workflow_id" : null,
+    "vault_id" : null,
+    "profile" : "DISABLED"
   }
+}');
+  return $items;
 }

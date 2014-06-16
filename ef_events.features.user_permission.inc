@@ -28,6 +28,20 @@ function ef_events_user_default_permissions() {
     'module' => 'registration',
   );
 
+  // Exported permission: 'administer own paid_event registration'.
+  $permissions['administer own paid_event registration'] = array(
+    'name' => 'administer own paid_event registration',
+    'roles' => array(),
+    'module' => 'registration',
+  );
+
+  // Exported permission: 'administer paid_event registration'.
+  $permissions['administer paid_event registration'] = array(
+    'name' => 'administer paid_event registration',
+    'roles' => array(),
+    'module' => 'registration',
+  );
+
   // Exported permission: 'administer registration'.
   $permissions['administer registration'] = array(
     'name' => 'administer registration',
@@ -73,6 +87,27 @@ function ef_events_user_default_permissions() {
     'module' => 'registration',
   );
 
+  // Exported permission: 'create paid_event registration'.
+  $permissions['create paid_event registration'] = array(
+    'name' => 'create paid_event registration',
+    'roles' => array(),
+    'module' => 'registration',
+  );
+
+  // Exported permission: 'create paid_event registration other anonymous'.
+  $permissions['create paid_event registration other anonymous'] = array(
+    'name' => 'create paid_event registration other anonymous',
+    'roles' => array(),
+    'module' => 'registration',
+  );
+
+  // Exported permission: 'create paid_event registration other users'.
+  $permissions['create paid_event registration other users'] = array(
+    'name' => 'create paid_event registration other users',
+    'roles' => array(),
+    'module' => 'registration',
+  );
+
   // Exported permission: 'delete any event registration'.
   $permissions['delete any event registration'] = array(
     'name' => 'delete any event registration',
@@ -82,12 +117,33 @@ function ef_events_user_default_permissions() {
     'module' => 'registration',
   );
 
+  // Exported permission: 'delete any paid_event registration'.
+  $permissions['delete any paid_event registration'] = array(
+    'name' => 'delete any paid_event registration',
+    'roles' => array(),
+    'module' => 'registration',
+  );
+
+  // Exported permission: 'delete own paid_event registration'.
+  $permissions['delete own paid_event registration'] = array(
+    'name' => 'delete own paid_event registration',
+    'roles' => array(),
+    'module' => 'registration',
+  );
+
   // Exported permission: 'edit event registration state'.
   $permissions['edit event registration state'] = array(
     'name' => 'edit event registration state',
     'roles' => array(
       'administrator' => 'administrator',
     ),
+    'module' => 'registration',
+  );
+
+  // Exported permission: 'edit paid_event registration state'.
+  $permissions['edit paid_event registration state'] = array(
+    'name' => 'edit paid_event registration state',
+    'roles' => array(),
     'module' => 'registration',
   );
 
@@ -115,6 +171,34 @@ function ef_events_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
     ),
+    'module' => 'registration',
+  );
+
+  // Exported permission: 'update any paid_event registration'.
+  $permissions['update any paid_event registration'] = array(
+    'name' => 'update any paid_event registration',
+    'roles' => array(),
+    'module' => 'registration',
+  );
+
+  // Exported permission: 'update own paid_event registration'.
+  $permissions['update own paid_event registration'] = array(
+    'name' => 'update own paid_event registration',
+    'roles' => array(),
+    'module' => 'registration',
+  );
+
+  // Exported permission: 'view own paid_event registration'.
+  $permissions['view own paid_event registration'] = array(
+    'name' => 'view own paid_event registration',
+    'roles' => array(),
+    'module' => 'registration',
+  );
+
+  // Exported permission: 'view paid_event registration'.
+  $permissions['view paid_event registration'] = array(
+    'name' => 'view paid_event registration',
+    'roles' => array(),
     'module' => 'registration',
   );
 
