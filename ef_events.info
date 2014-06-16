@@ -1,0 +1,7 @@
+name = EF Events
+core = 7.x
+package = EF
+dependencies[] = registration
+dependencies[] = registration_commerce
+dependencies[] = registration_views
+features[features_api][] = api:2
