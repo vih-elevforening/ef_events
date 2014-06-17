@@ -52,3 +52,17 @@ function ef_events_default_registration_type() {
 }');
   return $items;
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function ef_events_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'event_payable_node_form') {
+    $stop = null;
+    $form['actions']['submit']['#submit'][] = '_ef_events_paid_event_redirect';
+  }
+}
+
+function _ef_events_paid_event_redirect($form, &$form_state) {
+  $form_state['redirect'] = 'node/' . $form_state['node']->nid . '/registrations/settings';
+}

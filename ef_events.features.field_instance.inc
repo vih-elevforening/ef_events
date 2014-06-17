@@ -529,7 +529,7 @@ function ef_events_field_default_field_instances() {
           'override_labels' => 0,
         ),
       ),
-      'type' => 'inline_entity_form_single',
+      'type' => 'inline_entity_form',
       'weight' => 8,
     ),
   );
