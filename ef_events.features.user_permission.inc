@@ -94,6 +94,16 @@ function ef_events_user_default_permissions() {
     'module' => 'registration',
   );
 
+  // Exported permission: 'create event_payable content'.
+  $permissions['create event_payable content'] = array(
+    'name' => 'create event_payable content',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'content moderator' => 'content moderator',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create paid_event registration'.
   $permissions['create paid_event registration'] = array(
     'name' => 'create paid_event registration',
@@ -124,11 +134,30 @@ function ef_events_user_default_permissions() {
     'module' => 'registration',
   );
 
+  // Exported permission: 'delete any event_payable content'.
+  $permissions['delete any event_payable content'] = array(
+    'name' => 'delete any event_payable content',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete any paid_event registration'.
   $permissions['delete any paid_event registration'] = array(
     'name' => 'delete any paid_event registration',
     'roles' => array(),
     'module' => 'registration',
+  );
+
+  // Exported permission: 'delete own event_payable content'.
+  $permissions['delete own event_payable content'] = array(
+    'name' => 'delete own event_payable content',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'content moderator' => 'content moderator',
+    ),
+    'module' => 'node',
   );
 
   // Exported permission: 'delete own paid_event registration'.
@@ -145,6 +174,15 @@ function ef_events_user_default_permissions() {
     'module' => 'commerce_product',
   );
 
+  // Exported permission: 'edit any event_payable content'.
+  $permissions['edit any event_payable content'] = array(
+    'name' => 'edit any event_payable content',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit event registration state'.
   $permissions['edit event registration state'] = array(
     'name' => 'edit event registration state',
@@ -159,6 +197,16 @@ function ef_events_user_default_permissions() {
     'name' => 'edit own commerce_product entities of bundle registration',
     'roles' => array(),
     'module' => 'commerce_product',
+  );
+
+  // Exported permission: 'edit own event_payable content'.
+  $permissions['edit own event_payable content'] = array(
+    'name' => 'edit own event_payable content',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'content moderator' => 'content moderator',
+    ),
+    'module' => 'node',
   );
 
   // Exported permission: 'edit paid_event registration state'.
