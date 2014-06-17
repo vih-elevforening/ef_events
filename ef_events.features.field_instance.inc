@@ -129,9 +129,8 @@ function ef_events_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'registration',
         'settings' => array(),
-        'type' => 'registration_form',
+        'type' => 'hidden',
         'weight' => 1,
       ),
       'line_item' => array(
