@@ -521,7 +521,7 @@ function ef_events_field_default_field_instances() {
         'fields' => array(),
         'type_settings' => array(
           'allow_existing' => FALSE,
-          'autogenerate_title' => 1,
+          'autogenerate_title' => 0,
           'delete_references' => 0,
           'label_plural' => 'products',
           'label_singular' => 'product',
