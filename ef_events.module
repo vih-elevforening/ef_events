@@ -34,11 +34,6 @@ function ef_events_default_registration_type() {
   "locked" : "0",
   "weight" : "0",
   "data" : null,
-  "registration_commerce_settings" : {
-    "enable" : 1,
-    "price_defaults" : { "amount" : 0, "currency_code" : "USD" },
-    "purchasable_states" : { "complete" : "complete", "pending" : 0, "canceled" : 0 }
-  },
   "rdf_mapping" : [],
   "lingotek" : {
     "name" : "",

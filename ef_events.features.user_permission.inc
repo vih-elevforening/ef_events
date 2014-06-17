@@ -69,6 +69,13 @@ function ef_events_user_default_permissions() {
     'module' => 'registration',
   );
 
+  // Exported permission: 'create commerce_product entities of bundle registration'.
+  $permissions['create commerce_product entities of bundle registration'] = array(
+    'name' => 'create commerce_product entities of bundle registration',
+    'roles' => array(),
+    'module' => 'commerce_product',
+  );
+
   // Exported permission: 'create event registration other anonymous'.
   $permissions['create event registration other anonymous'] = array(
     'name' => 'create event registration other anonymous',
@@ -131,6 +138,13 @@ function ef_events_user_default_permissions() {
     'module' => 'registration',
   );
 
+  // Exported permission: 'edit any commerce_product entity of bundle registration'.
+  $permissions['edit any commerce_product entity of bundle registration'] = array(
+    'name' => 'edit any commerce_product entity of bundle registration',
+    'roles' => array(),
+    'module' => 'commerce_product',
+  );
+
   // Exported permission: 'edit event registration state'.
   $permissions['edit event registration state'] = array(
     'name' => 'edit event registration state',
@@ -140,29 +154,18 @@ function ef_events_user_default_permissions() {
     'module' => 'registration',
   );
 
+  // Exported permission: 'edit own commerce_product entities of bundle registration'.
+  $permissions['edit own commerce_product entities of bundle registration'] = array(
+    'name' => 'edit own commerce_product entities of bundle registration',
+    'roles' => array(),
+    'module' => 'commerce_product',
+  );
+
   // Exported permission: 'edit paid_event registration state'.
   $permissions['edit paid_event registration state'] = array(
     'name' => 'edit paid_event registration state',
     'roles' => array(),
     'module' => 'registration',
-  );
-
-  // Exported permission: 'registration_commerce_administer'.
-  $permissions['registration_commerce_administer'] = array(
-    'name' => 'registration_commerce_administer',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'registration_commerce',
-  );
-
-  // Exported permission: 'registration_commerce_pay_any_registration'.
-  $permissions['registration_commerce_pay_any_registration'] = array(
-    'name' => 'registration_commerce_pay_any_registration',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'registration_commerce',
   );
 
   // Exported permission: 'update any event registration'.
@@ -186,6 +189,20 @@ function ef_events_user_default_permissions() {
     'name' => 'update own paid_event registration',
     'roles' => array(),
     'module' => 'registration',
+  );
+
+  // Exported permission: 'view any commerce_product entity of bundle registration'.
+  $permissions['view any commerce_product entity of bundle registration'] = array(
+    'name' => 'view any commerce_product entity of bundle registration',
+    'roles' => array(),
+    'module' => 'commerce_product',
+  );
+
+  // Exported permission: 'view own commerce_product entities of bundle registration'.
+  $permissions['view own commerce_product entities of bundle registration'] = array(
+    'name' => 'view own commerce_product entities of bundle registration',
+    'roles' => array(),
+    'module' => 'commerce_product',
   );
 
   // Exported permission: 'view own paid_event registration'.

@@ -10,183 +10,45 @@
 function ef_events_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'commerce_line_item-registration-commerce_display_path'
-  $field_instances['commerce_line_item-registration-commerce_display_path'] = array(
+  // Exported field_instance: 'commerce_product-registration-commerce_price'
+  $field_instances['commerce_product-registration-commerce_price'] = array(
     'bundle' => 'registration',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 3,
-      ),
-      'display' => array(
+      'commerce_line_item_diff_standard' => array(
         'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'commerce_price',
+        'settings' => array(
+          'calculation' => 'calculated_sell_price',
+        ),
+        'type' => 'commerce_price_formatted_amount',
         'weight' => 0,
       ),
-    ),
-    'entity_type' => 'commerce_line_item',
-    'field_name' => 'commerce_display_path',
-    'label' => 'Display path',
-    'required' => TRUE,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance: 'commerce_line_item-registration-commerce_product'
-  $field_instances['commerce_line_item-registration-commerce_product'] = array(
-    'bundle' => 'registration',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'commerce_cart',
-        'settings' => array(
-          'combine' => TRUE,
-          'default_quantity' => 1,
-          'line_item_type' => 'product',
-          'show_quantity' => FALSE,
-          'show_single_product_attributes' => FALSE,
-        ),
-        'type' => 'commerce_cart_add_to_cart_form',
-        'weight' => 2,
-      ),
-      'display' => array(
+      'commerce_line_item_display' => array(
         'label' => 'hidden',
-        'module' => 'commerce_cart',
+        'module' => 'commerce_price',
         'settings' => array(
-          'combine' => TRUE,
-          'default_quantity' => 1,
-          'line_item_type' => 'product',
-          'show_quantity' => FALSE,
-          'show_single_product_attributes' => FALSE,
+          'calculation' => 'calculated_sell_price',
         ),
-        'type' => 'commerce_cart_add_to_cart_form',
+        'type' => 'commerce_price_formatted_amount',
         'weight' => 0,
       ),
-    ),
-    'entity_type' => 'commerce_line_item',
-    'field_name' => 'commerce_product',
-    'label' => 'Product',
-    'required' => TRUE,
-    'settings' => array(
-      'field_injection' => TRUE,
-      'referenceable_types' => array(),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'commerce_product_reference',
-      'settings' => array(
-        'autocomplete_match' => 'contains',
-        'autocomplete_path' => 'commerce_product/autocomplete',
-        'size' => 60,
+      'commerce_line_item_token' => array(
+        'label' => 'hidden',
+        'module' => 'commerce_price',
+        'settings' => array(
+          'calculation' => 'calculated_sell_price',
+        ),
+        'type' => 'commerce_price_formatted_amount',
+        'weight' => 0,
       ),
-      'type' => 'commerce_product_reference_autocomplete',
-      'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance: 'commerce_line_item-registration-commerce_total'
-  $field_instances['commerce_line_item-registration-commerce_total'] = array(
-    'bundle' => 'registration',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
       'default' => array(
         'label' => 'hidden',
         'module' => 'commerce_price',
         'settings' => array(
-          'calculation' => FALSE,
-        ),
-        'type' => 'commerce_price_formatted_amount',
-        'weight' => 1,
-      ),
-      'diff_standard' => array(
-        'label' => 'hidden',
-        'module' => 'commerce_price',
-        'settings' => array(
-          'calculation' => FALSE,
-        ),
-        'type' => 'commerce_price_formatted_amount',
-        'weight' => 1,
-      ),
-      'display' => array(
-        'label' => 'hidden',
-        'module' => 'commerce_price',
-        'settings' => array(
-          'calculation' => FALSE,
-        ),
-        'type' => 'commerce_price_formatted_amount',
-        'weight' => 1,
-      ),
-      'node_teaser' => array(
-        'label' => 'hidden',
-        'module' => 'commerce_price',
-        'settings' => array(
-          'calculation' => FALSE,
-        ),
-        'type' => 'commerce_price_formatted_amount',
-        'weight' => 1,
-      ),
-      'token' => array(
-        'label' => 'hidden',
-        'module' => 'commerce_price',
-        'settings' => array(
-          'calculation' => FALSE,
-        ),
-        'type' => 'commerce_price_formatted_amount',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'commerce_line_item',
-    'field_name' => 'commerce_total',
-    'label' => 'Total',
-    'required' => TRUE,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'commerce_price',
-      'settings' => array(
-        'currency_code' => 'default',
-      ),
-      'type' => 'commerce_price_full',
-      'weight' => 1,
-    ),
-  );
-
-  // Exported field_instance: 'commerce_line_item-registration-commerce_unit_price'
-  $field_instances['commerce_line_item-registration-commerce_unit_price'] = array(
-    'bundle' => 'registration',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'commerce_price',
-        'settings' => array(
-          'calculation' => FALSE,
+          'calculation' => 'calculated_sell_price',
         ),
         'type' => 'commerce_price_formatted_amount',
         'weight' => 0,
@@ -195,16 +57,25 @@ function ef_events_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'commerce_price',
         'settings' => array(
-          'calculation' => FALSE,
+          'calculation' => 'calculated_sell_price',
         ),
         'type' => 'commerce_price_formatted_amount',
         'weight' => 0,
       ),
-      'display' => array(
+      'full' => array(
         'label' => 'hidden',
         'module' => 'commerce_price',
         'settings' => array(
-          'calculation' => FALSE,
+          'calculation' => 'calculated_sell_price',
+        ),
+        'type' => 'commerce_price_formatted_amount',
+        'weight' => 0,
+      ),
+      'line_item' => array(
+        'label' => 'hidden',
+        'module' => 'commerce_price',
+        'settings' => array(
+          'calculation' => 'calculated_sell_price',
         ),
         'type' => 'commerce_price_formatted_amount',
         'weight' => 0,
@@ -213,7 +84,7 @@ function ef_events_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'commerce_price',
         'settings' => array(
-          'calculation' => FALSE,
+          'calculation' => 'calculated_sell_price',
         ),
         'type' => 'commerce_price_formatted_amount',
         'weight' => 0,
@@ -222,15 +93,15 @@ function ef_events_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'commerce_price',
         'settings' => array(
-          'calculation' => FALSE,
+          'calculation' => 'calculated_sell_price',
         ),
         'type' => 'commerce_price_formatted_amount',
         'weight' => 0,
       ),
     ),
-    'entity_type' => 'commerce_line_item',
-    'field_name' => 'commerce_unit_price',
-    'label' => 'Unit price',
+    'entity_type' => 'commerce_product',
+    'field_name' => 'commerce_price',
+    'label' => 'Price',
     'required' => TRUE,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -245,40 +116,71 @@ function ef_events_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'commerce_line_item-registration-registration_commerce_reg'
-  $field_instances['commerce_line_item-registration-registration_commerce_reg'] = array(
+  // Exported field_instance: 'commerce_product-registration-field_registration'
+  $field_instances['commerce_product-registration-field_registration'] = array(
     'bundle' => 'registration',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'registration_type' => 'paid_event',
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'hidden',
+        'module' => 'registration',
+        'settings' => array(),
+        'type' => 'registration_form',
+        'weight' => 1,
+      ),
+      'line_item' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
     ),
-    'entity_type' => 'commerce_line_item',
-    'field_name' => 'registration_commerce_reg',
+    'entity_type' => 'commerce_product',
+    'field_name' => 'field_registration',
     'label' => 'Registration',
-    'required' => TRUE,
+    'required' => 1,
     'settings' => array(
+      'default_registration_settings' => array(
+        'capacity' => 0,
+        'reminder' => array(
+          'reminder_settings' => array(
+            'reminder_date' => NULL,
+            'reminder_template' => '',
+          ),
+          'send_reminder' => 0,
+        ),
+        'scheduling' => array(
+          'close' => NULL,
+          'open' => NULL,
+        ),
+        'settings' => array(
+          'confirmation' => 'Registration has been saved.',
+          'from_address' => 'admin@example.com',
+          'maximum_spaces' => 1,
+          'multiple_registrations' => 0,
+        ),
+        'status' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 0,
+      'active' => 0,
+      'module' => 'registration',
+      'settings' => array(),
+      'type' => 'registration_select',
+      'weight' => 36,
     ),
   );
 
@@ -298,16 +200,21 @@ function ef_events_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'addressfield',
+        'label' => 'hidden',
+        'module' => 'addressfield_tokens',
         'settings' => array(
-          'format_handlers' => array(
-            0 => 'address',
+          'components' => array(
+            0 => 'thoroughfare',
+            1 => 'premise',
+            2 => 'locality',
+            3 => 'administrative_area',
+            4 => 'postal_code',
+            5 => 'country',
           ),
-          'use_widget_handlers' => 1,
+          'separator' => ', ',
         ),
-        'type' => 'addressfield_default',
-        'weight' => 6,
+        'type' => 'addressfield_components',
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -337,7 +244,7 @@ function ef_events_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 50,
+      'weight' => 6,
     ),
   );
 
@@ -348,17 +255,17 @@ function ef_events_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'date',
         'settings' => array(
-          'format_type' => 'long',
+          'format_type' => 'event_datetime',
           'fromto' => 'both',
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 4,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -390,7 +297,7 @@ function ef_events_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 46,
+      'weight' => 3,
     ),
   );
 
@@ -406,7 +313,7 @@ function ef_events_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 5,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -427,7 +334,7 @@ function ef_events_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 48,
+      'weight' => 5,
     ),
   );
 
@@ -438,14 +345,14 @@ function ef_events_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => '50x50',
         ),
         'type' => 'image',
-        'weight' => 7,
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -477,7 +384,7 @@ function ef_events_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 52,
+      'weight' => 2,
     ),
   );
 
@@ -490,15 +397,9 @@ function ef_events_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 10,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -523,7 +424,7 @@ function ef_events_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 58,
+      'weight' => 7,
     ),
   );
 
@@ -542,7 +443,7 @@ function ef_events_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -572,86 +473,27 @@ function ef_events_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 42,
+      'weight' => 4,
     ),
   );
 
-  // Exported field_instance: 'node-event_payable-field_registration'
-  $field_instances['node-event_payable-field_registration'] = array(
+  // Exported field_instance: 'node-event_payable-field_registration_product'
+  $field_instances['node-event_payable-field_registration_product'] = array(
     'bundle' => 'event_payable',
-    'default_value' => array(
-      0 => array(
-        'registration_type' => '',
-      ),
-    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'registration',
+        'module' => 'commerce_cart',
         'settings' => array(
-          'label' => ' ',
+          'combine' => TRUE,
+          'default_quantity' => 1,
+          'line_item_type' => 'product',
+          'show_quantity' => FALSE,
+          'show_single_product_attributes' => FALSE,
         ),
-        'type' => 'registration_default',
-        'weight' => 8,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_registration',
-    'label' => 'Registration bundle',
-    'required' => 0,
-    'settings' => array(
-      'default_registration_settings' => array(
-        'capacity' => 0,
-        'reminder' => array(
-          'reminder_settings' => array(
-            'reminder_date' => NULL,
-            'reminder_template' => '',
-          ),
-          'send_reminder' => 0,
-        ),
-        'scheduling' => array(
-          'close' => NULL,
-          'open' => NULL,
-        ),
-        'settings' => array(
-          'confirmation' => 'Registration has been saved.',
-          'from_address' => 'admin@example.com',
-          'maximum_spaces' => 1,
-          'multiple_registrations' => 0,
-        ),
-        'status' => 0,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'registration',
-      'settings' => array(),
-      'type' => 'registration_select',
-      'weight' => 54,
-    ),
-  );
-
-  // Exported field_instance: 'node-event_payable-field_registration_type'
-  $field_instances['node-event_payable-field_registration_type'] = array(
-    'bundle' => 'event_payable',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
+        'type' => 'commerce_cart_add_to_cart_form',
         'weight' => 9,
       ),
       'teaser' => array(
@@ -662,18 +504,34 @@ function ef_events_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_registration_type',
-    'label' => 'Registration type',
+    'field_name' => 'field_registration_product',
+    'label' => 'Registration',
     'required' => 0,
     'settings' => array(
+      'field_injection' => 1,
+      'referenceable_types' => array(
+        'product' => 0,
+        'registration' => 'registration',
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 56,
+      'module' => 'inline_entity_form',
+      'settings' => array(
+        'fields' => array(),
+        'type_settings' => array(
+          'allow_existing' => FALSE,
+          'autogenerate_title' => 1,
+          'delete_references' => 0,
+          'label_plural' => 'products',
+          'label_singular' => 'product',
+          'match_operator' => 'CONTAINS',
+          'override_labels' => 0,
+        ),
+      ),
+      'type' => 'inline_entity_form_single',
+      'weight' => 8,
     ),
   );
 
@@ -681,17 +539,12 @@ function ef_events_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Address');
   t('Date');
-  t('Display path');
   t('Event logo');
   t('Location');
   t('Maximum number of attendees');
   t('Organizers');
-  t('Product');
+  t('Price');
   t('Registration');
-  t('Registration bundle');
-  t('Registration type');
-  t('Total');
-  t('Unit price');
 
   return $field_instances;
 }
