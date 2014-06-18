@@ -116,6 +116,116 @@ function ef_events_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'commerce_product-registration-commerce_stock'
+  $field_instances['commerce_product-registration-commerce_stock'] = array(
+    'bundle' => 'registration',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 1,
+      ),
+      'line_item' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'commerce_product',
+    'field_name' => 'commerce_stock',
+    'label' => 'Number of tickets',
+    'required' => 1,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 36,
+    ),
+  );
+
+  // Exported field_instance: 'commerce_product-registration-commerce_stock_override'
+  $field_instances['commerce_product-registration-commerce_stock_override'] = array(
+    'bundle' => 'registration',
+    'commerce_cart_settings' => array(
+      'attribute_field' => 0,
+      'attribute_widget' => 'select',
+      'attribute_widget_title' => 'Disable stock for this product',
+    ),
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 2,
+      ),
+      'line_item' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'commerce_product',
+    'field_name' => 'commerce_stock_override',
+    'label' => 'Do not limit number of tickets',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 37,
+    ),
+  );
+
   // Exported field_instance: 'node-event_payable-field_address'
   $field_instances['node-event_payable-field_address'] = array(
     'bundle' => 'event_payable',
@@ -320,46 +430,6 @@ function ef_events_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_payable-field_number_of_attendees'
-  $field_instances['node-event_payable-field_number_of_attendees'] = array(
-    'bundle' => 'event_payable',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_number_of_attendees',
-    'label' => 'Maximum number of attendees',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 7,
-    ),
-  );
-
   // Exported field_instance: 'node-event_payable-field_organizers'
   $field_instances['node-event_payable-field_organizers'] = array(
     'bundle' => 'event_payable',
@@ -471,9 +541,10 @@ function ef_events_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Address');
   t('Date');
+  t('Do not limit number of tickets');
   t('Event logo');
   t('Location');
-  t('Maximum number of attendees');
+  t('Number of tickets');
   t('Organizers');
   t('Price');
   t('Registration');
