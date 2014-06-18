@@ -10,39 +10,9 @@
 function ef_events_user_default_permissions() {
   $permissions = array();
 
-
-  // Exported permission: 'create commerce_product entities of bundle registration'.
-  $permissions['create commerce_product entities of bundle registration'] = array(
-    'name' => 'create commerce_product entities of bundle registration',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'content moderator' => 'content moderator',
-    ),
-    'module' => 'commerce_product',
-  );
-
   // Exported permission: 'create event_payable content'.
   $permissions['create event_payable content'] = array(
     'name' => 'create event_payable content',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'content moderator' => 'content moderator',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'delete any event_payable content'.
-  $permissions['delete any event_payable content'] = array(
-    'name' => 'delete any event_payable content',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'delete own event_payable content'.
-  $permissions['delete own event_payable content'] = array(
-    'name' => 'delete own event_payable content',
     'roles' => array(
       'administrator' => 'administrator',
       'content moderator' => 'content moderator',

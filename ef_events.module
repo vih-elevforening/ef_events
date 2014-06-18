@@ -32,6 +32,13 @@ function ef_events_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+/**
+ * Implements hook_form_alter()
+ */
+function ef_events_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_state, $form_id) {
+  $form['submit']['#value'] = t('Attend');
+}
+
 function _ef_events_paid_event_redirect($form, &$form_state) {
   // No longer needed since decoupled from Registration, but keeping just in
   /// case we can reuse this.
