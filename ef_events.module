@@ -24,45 +24,16 @@ function ef_events_node_info() {
 }
 
 /**
- * Implements hook_default_registration_type().
- */
-function ef_events_default_registration_type() {
-  $items = array();
-  $items['paid_event'] = entity_import('registration_type', '{
-  "name" : "paid_event",
-  "label" : "Paid Event",
-  "locked" : "0",
-  "weight" : "0",
-  "data" : null,
-  "rdf_mapping" : [],
-  "lingotek" : {
-    "name" : "",
-    "document_id" : null,
-    "lingotek_nodes_translation_method" : null,
-    "create_lingotek_document" : 0,
-    "sync_method" : 0,
-    "allow_community_translation" : 0,
-    "url_alias_translation" : 0,
-    "node_sync_status" : "EDITED",
-    "project_id" : null,
-    "workflow_id" : null,
-    "vault_id" : null,
-    "profile" : "DISABLED"
-  }
-}');
-  return $items;
-}
-
-/**
  * Implements hook_form_alter().
  */
 function ef_events_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'event_payable_node_form') {
-    $stop = null;
-    $form['actions']['submit']['#submit'][] = '_ef_events_paid_event_redirect';
+    //$form['actions']['submit']['#submit'][] = '_ef_events_paid_event_redirect';
   }
 }
 
 function _ef_events_paid_event_redirect($form, &$form_state) {
-  $form_state['redirect'] = 'node/' . $form_state['node']->nid . '/registrations/settings';
+  // No longer needed since decoupled from Registration, but keeping just in
+  /// case we can reuse this.
+  //$form_state['redirect'] = 'node/' . $form_state['node']->nid . '/registrations/settings';
 }
