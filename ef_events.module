@@ -7,6 +7,21 @@
 include_once 'ef_events.features.inc';
 
 /**
+ * Implements hook_migrate_api().
+ */
+function ef_events_migrate_api() {
+  $api = array(
+    'api' => 2,
+    'migrations' => array(
+      'EFPaidEventProduct' => array('class_name' => 'EFPaidEventProduct'),
+      'EFPaidEventNode' => array('class_name' => 'EFPaidEventNode'),
+    ),
+  );
+
+  return $api;
+}
+
+/**
  * Implements hook_node_info().
  */
 function ef_events_node_info() {
