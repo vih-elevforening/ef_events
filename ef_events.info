@@ -6,6 +6,7 @@ dependencies[] = addressfield_tokens
 dependencies[] = commerce_cart
 dependencies[] = commerce_checkout
 dependencies[] = commerce_features
+dependencies[] = commerce_migrate
 dependencies[] = commerce_price
 dependencies[] = commerce_product
 dependencies[] = commerce_product_reference
