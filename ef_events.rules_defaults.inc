@@ -19,5 +19,16 @@ function ef_events_default_rules_configuration() {
       "DO" : [ { "redirect" : { "url" : "checkout" } } ]
     }
   }');
+  $items['rules_ef_events_only_allow_one_product_for_order'] = entity_import('rules_config', '{ "rules_ef_events_only_allow_one_product_for_order" : {
+      "LABEL" : "EF Events: Only allow one product for order",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "REQUIRES" : [ "commerce_cart" ],
+      "ON" : { "commerce_cart_product_prepare" : [] },
+      "DO" : [
+        { "commerce_cart_empty" : { "commerce_order" : [ "commerce_order" ] } }
+      ]
+    }
+  }');
   return $items;
 }

@@ -48,6 +48,7 @@ features[field_instance][] = node-event_payable-field_logo
 features[field_instance][] = node-event_payable-field_organizers
 features[field_instance][] = node-event_payable-field_registration_product
 features[rules_config][] = rules_ef_events_
+features[rules_config][] = rules_ef_events_only_allow_one_product_for_order
 features[user_permission][] = create event_payable content
 features[user_permission][] = edit any commerce_product entity of bundle registration
 features[user_permission][] = edit any event_payable content
