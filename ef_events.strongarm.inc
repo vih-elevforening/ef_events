@@ -184,13 +184,13 @@ function ef_events_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '10',
+          'weight' => '6',
         ),
         'path' => array(
-          'weight' => '1',
+          'weight' => '7',
         ),
         'redirect' => array(
-          'weight' => '9',
+          'weight' => '8',
         ),
       ),
       'display' => array(

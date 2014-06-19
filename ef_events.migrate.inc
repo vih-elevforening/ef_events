@@ -78,38 +78,21 @@ class EFPaidEventNode extends Migration {
     $this->addFieldMapping('uid', 'uid')->defaultValue(1);
 
     $this->addFieldMapping('title', 'title');
-    /*
+
     $this->addFieldMapping('body', 'body');
     $this->addFieldMapping('body:format')
       ->defaultValue('filtered_html');
-    */
+
     $this->addFieldMapping('field_date', 'date_from');
     $this->addFieldMapping('field_date:to', 'date_to');
 
-    $this->addFieldMapping('field_location')
-      ->defaultValue('physical');
-
-    /*
     // Featured image
-    $this->addFieldMapping('field_featured_image', 'featured_image');
-    $this->addFieldMapping('field_featured_image:file_replace')
+    $this->addFieldMapping('field_logo', 'featured_image');
+    $this->addFieldMapping('field_logo:file_replace')
       ->defaultValue(FILE_EXISTS_REPLACE);
-    $this->addFieldMapping('field_featured_image:source_dir')
-      ->defaultValue(drupal_get_path('module', 'vih_short_course_commerce') . '/import/images');
-    */
-    /*
-    // Adress fields to be added
-    $arguments = array(
-      // 'name_line' => array('source_field' => 'full_name'),
-      'thoroughfare' => array('source_field' => 'address'),
-      'locality' => array('source_field' => 'city'),
-      'postal_code' => array('source_field' => 'zipcode'),
-      'country' => array('source_field' => 'country'),
-    );
-    $this->addFieldMapping('field_address', 'country')
-      ->arguments($arguments)
-      ->description('Address field');
-    */
+    $this->addFieldMapping('field_logo:source_dir')
+      ->defaultValue(drupal_get_path('module', 'ef_events') . '/import/images');
+
     // Connect the products.
     $this->addFieldMapping('field_registration_product', 'skus');
   }
@@ -130,17 +113,7 @@ class EFPaidEventNode extends Migration {
     $columns[3] = array('date_to', 'Date To');
     $columns[4] = array('body', 'Body');
     $columns[5] = array('sku', 'SKU');
-    $columns[6] = array('product', 'Product');
-    $columns[7] = array('featured_image', 'Featured Image');
+    $columns[6] = array('featured_image', 'Featured Image');
     return $columns;
   }
 }
-/*
- *
-features[field_instance][] = node-event_payable-field_address
-features[field_instance][] = node-event_payable-field_date
-features[field_instance][] = node-event_payable-field_location
-features[field_instance][] = node-event_payable-field_logo
-features[field_instance][] = node-event_payable-field_organizers
-features[field_instance][] = node-event_payable-field_registration_product
- */

@@ -257,71 +257,7 @@ function ef_events_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 12,
-    ),
-  );
-
-  // Exported field_instance: 'node-event_payable-field_address'
-  $field_instances['node-event_payable-field_address'] = array(
-    'bundle' => 'event_payable',
-    'default_value' => array(
-      0 => array(
-        'element_key' => 'node|event_payable|field_address|und|0',
-        'thoroughfare' => '',
-        'premise' => '',
-        'locality' => '',
-        'country' => 'AF',
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'addressfield_tokens',
-        'settings' => array(
-          'components' => array(
-            0 => 'thoroughfare',
-            1 => 'premise',
-            2 => 'locality',
-            3 => 'administrative_area',
-            4 => 'postal_code',
-            5 => 'country',
-          ),
-          'separator' => ', ',
-        ),
-        'type' => 'addressfield_components',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_address',
-    'label' => 'Address',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'addressfield',
-      'settings' => array(
-        'available_countries' => array(),
-        'format_handlers' => array(
-          'address' => 'address',
-          'address-hide-country' => 0,
-          'organisation' => 0,
-          'name-full' => 0,
-          'name-oneline' => 0,
-        ),
-      ),
-      'type' => 'addressfield_standard',
-      'weight' => 6,
+      'weight' => 1,
     ),
   );
 
@@ -375,43 +311,6 @@ function ef_events_field_default_field_instances() {
       ),
       'type' => 'date_popup',
       'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'node-event_payable-field_location'
-  $field_instances['node-event_payable-field_location'] = array(
-    'bundle' => 'event_payable',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_location',
-    'label' => 'Location',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 5,
     ),
   );
 
@@ -568,18 +467,16 @@ function ef_events_field_default_field_instances() {
         ),
       ),
       'type' => 'inline_entity_form',
-      'weight' => 8,
+      'weight' => 5,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Address');
   t('Body');
   t('Date');
   t('Do not limit number of tickets');
   t('Event logo');
-  t('Location');
   t('Number of tickets');
   t('Organizers');
   t('Price');
