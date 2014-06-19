@@ -196,37 +196,37 @@ function ef_events_strongarm() {
       'display' => array(
         'product:sku' => array(
           'default' => array(
-            'weight' => '9',
+            'weight' => '8',
             'visible' => FALSE,
           ),
         ),
         'product:title' => array(
           'default' => array(
-            'weight' => '10',
+            'weight' => '9',
             'visible' => FALSE,
           ),
         ),
         'product:status' => array(
           'default' => array(
-            'weight' => '11',
+            'weight' => '10',
             'visible' => FALSE,
           ),
         ),
         'product:commerce_price' => array(
           'default' => array(
-            'weight' => '5',
+            'weight' => '4',
             'visible' => TRUE,
           ),
         ),
         'product:commerce_stock' => array(
           'default' => array(
-            'weight' => '8',
+            'weight' => '7',
             'visible' => FALSE,
           ),
         ),
         'product:commerce_stock_override' => array(
           'default' => array(
-            'weight' => '12',
+            'weight' => '11',
             'visible' => FALSE,
           ),
         ),
