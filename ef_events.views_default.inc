@@ -98,7 +98,7 @@ function ef_events_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'node/%nid/event-attendees';
+  $handler->display->display_options['path'] = 'node/%/event-attendees';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Attendees';
   $handler->display->display_options['menu']['weight'] = '0';
