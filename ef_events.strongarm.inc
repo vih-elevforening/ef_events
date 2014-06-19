@@ -35,7 +35,7 @@ function ef_events_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_event_payable';
-  $strongarm->value = '2';
+  $strongarm->value = '0';
   $export['comment_event_payable'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -126,20 +126,20 @@ function ef_events_strongarm() {
       'display' => array(
         'sku' => array(
           'default' => array(
-            'weight' => '-10',
+            'weight' => '4',
             'visible' => FALSE,
           ),
         ),
         'title' => array(
           'default' => array(
-            'weight' => '-5',
+            'weight' => '0',
             'visible' => TRUE,
           ),
         ),
         'status' => array(
           'default' => array(
-            'weight' => '5',
-            'visible' => TRUE,
+            'weight' => '3',
+            'visible' => FALSE,
           ),
         ),
         'registration_available' => array(
@@ -196,32 +196,32 @@ function ef_events_strongarm() {
       'display' => array(
         'product:sku' => array(
           'default' => array(
-            'weight' => '8',
+            'weight' => '9',
             'visible' => FALSE,
           ),
         ),
         'product:title' => array(
           'default' => array(
-            'weight' => '9',
+            'weight' => '10',
             'visible' => FALSE,
           ),
         ),
         'product:status' => array(
           'default' => array(
-            'weight' => '10',
+            'weight' => '11',
             'visible' => FALSE,
           ),
         ),
         'product:commerce_price' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '5',
             'visible' => TRUE,
           ),
         ),
         'product:commerce_stock' => array(
           'default' => array(
-            'weight' => '6',
-            'visible' => TRUE,
+            'weight' => '8',
+            'visible' => FALSE,
           ),
         ),
         'product:commerce_stock_override' => array(
@@ -246,9 +246,7 @@ function ef_events_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_event_payable';
-  $strongarm->value = array(
-    0 => 'main-menu',
-  );
+  $strongarm->value = array();
   $export['menu_options_event_payable'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -271,14 +269,14 @@ function ef_events_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_event_payable';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_event_payable'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_event_payable';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['node_submitted_event_payable'] = $strongarm;
 
   return $export;

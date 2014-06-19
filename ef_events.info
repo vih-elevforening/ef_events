@@ -79,5 +79,4 @@ features_exclude[field_base][commerce_product] = commerce_product
 features_exclude[field_base][commerce_price] = commerce_price
 features_exclude[field_base][commerce_stock] = commerce_stock
 features_exclude[field_base][commerce_stock_override] = commerce_stock_override
-
 files[] = ef_events.migrate.inc

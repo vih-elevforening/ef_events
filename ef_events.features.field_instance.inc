@@ -45,13 +45,13 @@ function ef_events_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'inline',
         'module' => 'commerce_price',
         'settings' => array(
           'calculation' => 'calculated_sell_price',
         ),
         'type' => 'commerce_price_formatted_amount',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'diff_standard' => array(
         'label' => 'hidden',
@@ -129,10 +129,9 @@ function ef_events_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'number',
         'settings' => array(),
-        'type' => 'number_unformatted',
-        'weight' => 1,
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'line_item' => array(
         'label' => 'above',
@@ -187,7 +186,7 @@ function ef_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 5,
       ),
       'line_item' => array(
         'label' => 'above',
@@ -250,7 +249,7 @@ function ef_events_field_default_field_instances() {
           'separator' => ', ',
         ),
         'type' => 'addressfield_components',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -301,7 +300,7 @@ function ef_events_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 2,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -349,7 +348,7 @@ function ef_events_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 5,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -388,7 +387,7 @@ function ef_events_field_default_field_instances() {
           'image_style' => '50x50',
         ),
         'type' => 'image',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -439,7 +438,7 @@ function ef_events_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 4,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -480,17 +479,17 @@ function ef_events_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'commerce_cart',
         'settings' => array(
-          'combine' => TRUE,
+          'combine' => 1,
           'default_quantity' => 1,
           'line_item_type' => 'product',
-          'show_quantity' => FALSE,
-          'show_single_product_attributes' => FALSE,
+          'show_quantity' => 0,
+          'show_single_product_attributes' => 0,
         ),
         'type' => 'commerce_cart_add_to_cart_form',
-        'weight' => 7,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
