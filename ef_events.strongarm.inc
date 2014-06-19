@@ -127,7 +127,7 @@ function ef_events_strongarm() {
         'sku' => array(
           'default' => array(
             'weight' => '-10',
-            'visible' => TRUE,
+            'visible' => FALSE,
           ),
         ),
         'title' => array(
@@ -193,7 +193,44 @@ function ef_events_strongarm() {
           'weight' => '9',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'product:sku' => array(
+          'default' => array(
+            'weight' => '8',
+            'visible' => FALSE,
+          ),
+        ),
+        'product:title' => array(
+          'default' => array(
+            'weight' => '9',
+            'visible' => FALSE,
+          ),
+        ),
+        'product:status' => array(
+          'default' => array(
+            'weight' => '10',
+            'visible' => FALSE,
+          ),
+        ),
+        'product:commerce_price' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+        'product:commerce_stock' => array(
+          'default' => array(
+            'weight' => '6',
+            'visible' => TRUE,
+          ),
+        ),
+        'product:commerce_stock_override' => array(
+          'default' => array(
+            'weight' => '12',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__event_payable'] = $strongarm;
