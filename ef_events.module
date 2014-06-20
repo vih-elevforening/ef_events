@@ -38,7 +38,6 @@ function ef_events_node_info() {
   return $items;
 }
 
-
 /**
  * Implementation of hook_form_FORMID_alter().
  */
@@ -50,6 +49,7 @@ function ef_events_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_stat
     // Change the "Add to Cart" button text
     if ($form['submit']['#disabled'] != TRUE) {
       $form['submit']['#value'] = t('Attend');
+      $form['submit']['#attributes']['class'][] = 'action-item-primary';
     }
 
     if (_ef_user_has_bought_products(array($product->product_id))) {
