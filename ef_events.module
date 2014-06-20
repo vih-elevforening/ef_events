@@ -38,24 +38,90 @@ function ef_events_node_info() {
   return $items;
 }
 
+
 /**
- * Implements hook_form_alter().
+ * Implementation of hook_form_FORMID_alter().
  */
-function ef_events_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'event_payable_node_form') {
-    //$form['actions']['submit']['#submit'][] = '_ef_events_paid_event_redirect';
+function ef_events_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_state) {
+  $cart_product_ids = _ef_get_products_in_cart();
+  $purchased_product_ids = _ef_get_users_purchased_products();
+
+  $line_item = $form_state['line_item'];
+  $product = commerce_product_load($line_item->commerce_product[LANGUAGE_NONE][0]['product_id']);
+
+  // If this was a contrib module, we'd want to check if the associated registration
+  // entity is set to "Allow multiple registrations" for a user instead of just
+  // checking whether the product type is "program" as is the case for this specific site
+  if ($product->type == 'registration') {
+    // Change the "Add to Cart" button text
+    $form['submit']['#value'] = t('Attend');
+
+    if (in_array($product->product_id, $cart_product_ids)) {
+      // Product is already in cart! We only want to allow a quantity of 1,
+      // so disable the submit button and change its text accordingly
+      // TODO Should probably just empty form instead
+      $form['submit']['#disabled'] = TRUE;
+      $form['submit']['#value'] = t('Already in cart');
+    }
+
+    if (in_array($product->product_id, $purchased_product_ids)) {
+      // Product has already been purchased!
+      // We only want users to register for a program once
+      // TODO This does not seem to work yet
+      $form['submit']['#disabled'] = TRUE;
+      $form['submit']['#value'] = t('Already attending');
+    }
   }
 }
 
 /**
- * Implements hook_form_alter()
+ * Return the product_id values for all products in the cart
+ *
+ * @return
+ *  An array of product ids
  */
-function ef_events_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_state, $form_id) {
-  $form['submit']['#value'] = t('Attend');
+function _ef_get_products_in_cart() {
+  $cart_product_ids = &drupal_static(__FUNCTION__);
+
+  if (!isset($cart_product_ids)) {
+    global $user;
+    $cart_product_ids = array();
+    $order = commerce_cart_order_load($user->uid);
+    if ($order) {
+      $order_wrapper = entity_metadata_wrapper('commerce_order', $order);
+      foreach ($order_wrapper->commerce_line_items as $delta => $line_item_wrapper) {
+        $product_wrapper = $line_item_wrapper->commerce_product;
+        $cart_product_ids[] = $product_wrapper->product_id->value();
+      }
+    }
+
+    $cart_product_ids = array_unique($cart_product_ids);
+  }
+
+  return $cart_product_ids;
 }
 
-function _ef_events_paid_event_redirect($form, &$form_state) {
-  // No longer needed since decoupled from Registration, but keeping just in
-  /// case we can reuse this.
-  //$form_state['redirect'] = 'node/' . $form_state['node']->nid . '/registrations/settings';
+/**
+ * Return the product_id values for all products already purchased
+ *
+ * @return
+ *  An array of product ids
+ */
+function _ef_get_users_purchased_products() {
+  $purchased_product_ids = &drupal_static(__FUNCTION__);
+
+  if (!isset($purchased_product_ids)) {
+    global $user;
+    $query = db_select('commerce_order', 'corder');
+    $query->join('commerce_line_item', 'li', 'corder.order_id = li.order_id');
+    $query->join('field_data_commerce_product', 'prod', 'li.line_item_id = prod.entity_id');
+    $query->condition('corder.uid', $user->uid, '=')
+      ->condition('corder.status', 'completed', '=')
+      ->fields('prod', array('commerce_product_product_id'));
+    $result = $query->execute();
+
+    $purchased_product_ids = array_unique($result->fetchCol());
+  }
+
+  return $purchased_product_ids;
 }
