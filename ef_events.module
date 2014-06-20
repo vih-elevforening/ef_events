@@ -43,31 +43,18 @@ function ef_events_node_info() {
  * Implementation of hook_form_FORMID_alter().
  */
 function ef_events_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_state) {
-  $cart_product_ids = _ef_get_products_in_cart();
-  $purchased_product_ids = _ef_get_users_purchased_products();
-
   $line_item = $form_state['line_item'];
   $product = commerce_product_load($line_item->commerce_product[LANGUAGE_NONE][0]['product_id']);
 
-  // If this was a contrib module, we'd want to check if the associated registration
-  // entity is set to "Allow multiple registrations" for a user instead of just
-  // checking whether the product type is "program" as is the case for this specific site
   if ($product->type == 'registration') {
     // Change the "Add to Cart" button text
-    $form['submit']['#value'] = t('Attend');
-
-    if (in_array($product->product_id, $cart_product_ids)) {
-      // Product is already in cart! We only want to allow a quantity of 1,
-      // so disable the submit button and change its text accordingly
-      // TODO Should probably just empty form instead
-      $form['submit']['#disabled'] = TRUE;
-      $form['submit']['#value'] = t('Already in cart');
+    if ($form['submit']['#disabled'] != TRUE) {
+      $form['submit']['#value'] = t('Attend');
     }
 
-    if (in_array($product->product_id, $purchased_product_ids)) {
+    if (_ef_user_has_bought_products(array($product->product_id))) {
       // Product has already been purchased!
       // We only want users to register for a program once
-      // TODO This does not seem to work yet
       $form['submit']['#disabled'] = TRUE;
       $form['submit']['#value'] = t('Already attending');
     }
@@ -75,53 +62,47 @@ function ef_events_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_stat
 }
 
 /**
- * Return the product_id values for all products in the cart
+ * Only allow one registration product in the cart with the quantity of one.
  *
- * @return
- *  An array of product ids
+ * Implements hook_commerce_cart_product_add().
  */
-function _ef_get_products_in_cart() {
-  $cart_product_ids = &drupal_static(__FUNCTION__);
+function ef_events_commerce_cart_product_add($order, $product, $quantity, $line_item) {
+  if ($product->type == 'registration') {
+    $order_wrapper = entity_metadata_wrapper('commerce_order', $order);
 
-  if (!isset($cart_product_ids)) {
-    global $user;
-    $cart_product_ids = array();
-    $order = commerce_cart_order_load($user->uid);
-    if ($order) {
-      $order_wrapper = entity_metadata_wrapper('commerce_order', $order);
-      foreach ($order_wrapper->commerce_line_items as $delta => $line_item_wrapper) {
-        $product_wrapper = $line_item_wrapper->commerce_product;
-        $cart_product_ids[] = $product_wrapper->product_id->value();
+    // Loop through the line items.
+    foreach ($order_wrapper->commerce_line_items as $delta => $line_item_wrapper) {
+      // If this is the product we're keeping, make sure the quantity is always 1.
+      if ($line_item_wrapper->commerce_product->product_id->value() == $product->product_id) {
+        $line_item_wrapper->quantity->set(1);
+        $line_item_wrapper->save();
+      }
+      else {
+        // Remove any other product from the order
+        commerce_cart_order_product_line_item_delete($order, $line_item_wrapper->line_item_id->value());
       }
     }
-
-    $cart_product_ids = array_unique($cart_product_ids);
   }
-
-  return $cart_product_ids;
 }
 
 /**
- * Return the product_id values for all products already purchased
- *
- * @return
- *  An array of product ids
+ * Has the user bought a product.
  */
-function _ef_get_users_purchased_products() {
-  $purchased_product_ids = &drupal_static(__FUNCTION__);
+function _ef_user_has_bought_products($product_ids = array()) {
+  global $user;
 
-  if (!isset($purchased_product_ids)) {
-    global $user;
-    $query = db_select('commerce_order', 'corder');
-    $query->join('commerce_line_item', 'li', 'corder.order_id = li.order_id');
-    $query->join('field_data_commerce_product', 'prod', 'li.line_item_id = prod.entity_id');
-    $query->condition('corder.uid', $user->uid, '=')
-      ->condition('corder.status', 'completed', '=')
-      ->fields('prod', array('commerce_product_product_id'));
-    $result = $query->execute();
+  $query = db_select('field_data_commerce_product', 'p');
+  $query->fields('o', array('uid'));
+  $query->innerJoin('field_data_commerce_line_items', 'l', 'l.commerce_line_items_line_item_id = p.entity_id');
+  $query->innerJoin('commerce_order', 'o', 'o.order_id = l.entity_id');
+  $query->condition('p.commerce_product_product_id', $product_ids, 'IN');
+  $query->groupBy('o.order_id');
+  $result = $query->execute()->fetchCol();
 
-    $purchased_product_ids = array_unique($result->fetchCol());
+  // User has ordered product previously.
+  if (in_array($user->uid, $result)){
+    return TRUE;
   }
 
-  return $purchased_product_ids;
+  return FALSE;
 }
