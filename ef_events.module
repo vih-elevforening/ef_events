@@ -15,6 +15,7 @@ function ef_events_migrate_api() {
     'migrations' => array(
       'EFPaidEventProduct' => array('class_name' => 'EFPaidEventProduct'),
       'EFPaidEventNode' => array('class_name' => 'EFPaidEventNode'),
+      'EFDonationProduct' => array('class_name' => 'EFDonationProduct'),
     ),
   );
 

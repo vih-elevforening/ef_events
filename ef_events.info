@@ -15,6 +15,7 @@ dependencies[] = commerce_stock
 dependencies[] = commons_body
 dependencies[] = commons_bw
 dependencies[] = commons_events
+dependencies[] = commerce_migrate
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = ef_commerce
