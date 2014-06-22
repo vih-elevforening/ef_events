@@ -21,6 +21,7 @@ dependencies[] = ef_commerce
 dependencies[] = entity
 dependencies[] = entityreference
 dependencies[] = features
+dependencies[] = file_entity
 dependencies[] = image
 dependencies[] = inline_entity_form
 dependencies[] = lingotek

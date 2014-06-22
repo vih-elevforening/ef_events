@@ -199,10 +199,18 @@ function ef_events_strongarm() {
             'weight' => '8',
             'visible' => FALSE,
           ),
+          'teaser' => array(
+            'weight' => '6',
+            'visible' => FALSE,
+          ),
         ),
         'product:title' => array(
           'default' => array(
             'weight' => '9',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '7',
             'visible' => FALSE,
           ),
         ),
@@ -211,11 +219,19 @@ function ef_events_strongarm() {
             'weight' => '10',
             'visible' => FALSE,
           ),
+          'teaser' => array(
+            'weight' => '11',
+            'visible' => FALSE,
+          ),
         ),
         'product:commerce_price' => array(
           'default' => array(
             'weight' => '4',
             'visible' => TRUE,
+          ),
+          'teaser' => array(
+            'weight' => '3',
+            'visible' => FALSE,
           ),
         ),
         'product:commerce_stock' => array(
@@ -223,10 +239,18 @@ function ef_events_strongarm() {
             'weight' => '7',
             'visible' => FALSE,
           ),
+          'teaser' => array(
+            'weight' => '5',
+            'visible' => FALSE,
+          ),
         ),
         'product:commerce_stock_override' => array(
           'default' => array(
             'weight' => '11',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '4',
             'visible' => FALSE,
           ),
         ),
