@@ -97,6 +97,7 @@ function _ef_user_has_bought_products($product_ids = array()) {
   $query->innerJoin('field_data_commerce_line_items', 'l', 'l.commerce_line_items_line_item_id = p.entity_id');
   $query->innerJoin('commerce_order', 'o', 'o.order_id = l.entity_id');
   $query->condition('p.commerce_product_product_id', $product_ids, 'IN');
+  $query->condition('o.status', array('pending', 'processing', 'completed', 'invoiced'), 'IN');
   $query->groupBy('o.order_id');
   $result = $query->execute()->fetchCol();
 
