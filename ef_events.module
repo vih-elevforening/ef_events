@@ -43,22 +43,30 @@ function ef_events_node_info() {
  * Implementation of hook_form_FORMID_alter().
  */
 function ef_events_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_state) {
+  global $user;
   $line_item = $form_state['line_item'];
   $product = commerce_product_load($line_item->commerce_product[LANGUAGE_NONE][0]['product_id']);
 
   if ($product->type == 'registration') {
+    if (!_ef_users_profile_filled_in()) {
+      unset($form['line_item_fields']);
+      $form['message']['#markup'] = t('Please fill in your !link before your registration.', array('!link' => l(t('profile'), 'user/' .$user->uid . '/edit-profile')));
+      $form['submit']['#disabled'] = TRUE;
+      $form['submit']['#value'] = t('Fill in your profile account before registration');
+    }
+    else if (_ef_user_has_bought_products(array($product->product_id))) {
+      // Product has already been purchased!
+      // We only want users to register for a program once
+      unset($form['line_item_fields']);
+      $form['submit']['#disabled'] = TRUE;
+      $form['submit']['#value'] = t('Already attending');
+    }
     // Change the "Add to Cart" button text
-    if ($form['submit']['#disabled'] != TRUE) {
+    else if ($form['submit']['#disabled'] != TRUE) {
       $form['submit']['#value'] = t('Attend');
       $form['submit']['#attributes']['class'][] = 'action-item-primary';
     }
 
-    if (_ef_user_has_bought_products(array($product->product_id))) {
-      // Product has already been purchased!
-      // We only want users to register for a program once
-      $form['submit']['#disabled'] = TRUE;
-      $form['submit']['#value'] = t('Already attending');
-    }
   }
 }
 
