@@ -4,10 +4,3 @@
  * @file
  * Install, uninstall, and update hooks
  */
-
-/**
- * Implements hook_enable().
- */
-function ef_events_enable() {
-  // Empty after registration decoupling.
-}
