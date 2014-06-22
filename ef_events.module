@@ -116,3 +116,42 @@ function _ef_user_has_bought_products($product_ids = array()) {
 
   return FALSE;
 }
+
+
+/**
+ * Implements hook_block_info().
+ */
+function ef_events_block_info() {
+  $blocks['ef_events_create_event_link'] = array(
+    'info' => t('"Create a payable event" call to action'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function ef_events_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'ef_events_create_event_link':
+      if (node_access('create', 'event-payable')) {
+        $block['subject'] = NULL;
+        $block['content'] = array(
+          '#type' => 'link',
+          '#title' => t('List a payable event'),
+          '#href' => 'node/add/event-payable',
+          '#options' => array(
+            'query' => array(
+              'destination' => 'events',
+            ),
+          ),
+        );
+      }
+      break;
+  }
+
+  return $block;
+}
