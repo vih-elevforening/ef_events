@@ -68,11 +68,6 @@ function ef_events_views_default_views() {
   $handler->display->display_options['fields']['created']['table'] = 'commerce_order';
   $handler->display->display_options['fields']['created']['field'] = 'created';
   $handler->display->display_options['fields']['created']['relationship'] = 'order_id';
-  /* Field: Content: Nid */
-  $handler->display->display_options['fields']['nid']['id'] = 'nid';
-  $handler->display->display_options['fields']['nid']['table'] = 'node';
-  $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['relationship'] = 'field_registration_product';
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -94,6 +89,17 @@ function ef_events_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'product' => 'product',
+  );
+  /* Filter criterion: Commerce Order: Order status */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'commerce_order';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['relationship'] = 'order_id';
+  $handler->display->display_options['filters']['status']['operator'] = 'not in';
+  $handler->display->display_options['filters']['status']['value'] = array(
+    'canceled' => 'canceled',
+    'cart' => 'cart',
+    'checkout_checkout' => 'checkout_checkout',
   );
 
   /* Display: Page */
@@ -127,7 +133,6 @@ function ef_events_views_default_views() {
     t('Order owner'),
     t('Order number'),
     t('Created date'),
-    t('Nid'),
     t('Name'),
     t('All'),
     t('Page'),
