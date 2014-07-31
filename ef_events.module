@@ -48,9 +48,17 @@ function ef_events_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_stat
   $product = commerce_product_load($line_item->commerce_product[LANGUAGE_NONE][0]['product_id']);
 
   if ($product->type == 'registration') {
-    if (!_ef_users_profile_filled_in()) {
+    if (!user_is_logged_in()) {
       unset($form['line_item_fields']);
-      $form['message']['#markup'] = t('Please fill in your !link before your registration.', array('!link' => l(t('profile'), 'user/' .$user->uid . '/edit-profile')));
+      unset($form['product_id']);
+      print_r($form);
+      $form['message']['#markup'] = t('Please !link to register.', array('!link' => l(t('login'), 'user/login', array('query' => array('destination' => current_path())))));
+      $form['submit']['#disabled'] = TRUE;
+      $form['submit']['#value'] = t('Login to register');
+    }
+    else if (!_ef_users_profile_filled_in()) {
+      unset($form['line_item_fields']);
+      $form['message']['#markup'] = t('Please fill in your !link before your registration.', array('!link' => l(t('profile'), 'user/' .$user->uid . '/edit-profile', array('query' => array('destination' => current_path())))));
       $form['submit']['#disabled'] = TRUE;
       $form['submit']['#value'] = t('Fill in your profile account before registration');
     }
