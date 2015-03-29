@@ -61,12 +61,16 @@ function ef_events_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_stat
       $form['submit']['#disabled'] = TRUE;
       $form['submit']['#value'] = t('Fill in your profile account before registration');
     }
-    else if (_ef_user_has_bought_products(array($product->product_id))) {
+    else if ($existing_order_id = _ef_user_has_bought_products(array($product->product_id))) {
       // Product has already been purchased!
       // We only want users to register for a program once
       unset($form['line_item_fields']);
       $form['submit']['#disabled'] = TRUE;
       $form['submit']['#value'] = t('Already attending');
+
+      // Since they have bought a registration, link to it.
+      $order_path = 'user/' . $user->uid . '/orders/' . $existing_order_id;
+      $form['#suffix'] = l(t('View my registration'), $order_path);
     }
     // Change the "Add to Cart" button text
     else if ($form['submit']['#disabled'] != TRUE) {
@@ -107,18 +111,22 @@ function ef_events_commerce_cart_product_add($order, $product, $quantity, $line_
 function _ef_user_has_bought_products($product_ids = array()) {
   global $user;
 
-  $query = db_select('field_data_commerce_product', 'p');
-  $query->fields('o', array('uid'));
-  $query->innerJoin('field_data_commerce_line_items', 'l', 'l.commerce_line_items_line_item_id = p.entity_id');
-  $query->innerJoin('commerce_order', 'o', 'o.order_id = l.entity_id');
-  $query->condition('p.commerce_product_product_id', $product_ids, 'IN');
-  $query->condition('o.status', array('pending', 'processing', 'completed', 'invoiced'), 'IN');
-  $query->groupBy('o.order_id');
-  $result = $query->execute()->fetchCol();
+  $result =& drupal_static(__FUNCTION__, array());
+
+  if (empty($result)) {
+    $query = db_select('field_data_commerce_product', 'p');
+    $query->fields('o', array('uid', 'order_id'));
+    $query->innerJoin('field_data_commerce_line_items', 'l', 'l.commerce_line_items_line_item_id = p.entity_id');
+    $query->innerJoin('commerce_order', 'o', 'o.order_id = l.entity_id');
+    $query->condition('p.commerce_product_product_id', $product_ids, 'IN');
+    $query->condition('o.status', array('pending', 'processing', 'completed', 'invoiced'), 'IN');
+    $query->groupBy('o.order_id');
+    $result = $query->execute()->fetchAllAssoc('uid');
+  }
 
   // User has ordered product previously.
-  if (in_array($user->uid, $result)){
-    return TRUE;
+  if (array_key_exists($user->uid, $result)){
+    return $result[$user->uid]->order_id;
   }
 
   return FALSE;
