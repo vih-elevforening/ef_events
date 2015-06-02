@@ -55,13 +55,18 @@ function ef_events_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_stat
       $form['submit']['#disabled'] = TRUE;
       $form['submit']['#value'] = t('Login to register');
     }
-    else if (!_ef_users_profile_filled_in()) {
+    elseif (!_ef_users_profile_filled_in()) {
       unset($form['line_item_fields']);
       $form['message']['#markup'] = t('Please fill in your !link before your registration.', array('!link' => l(t('profile'), 'user/' .$user->uid . '/edit-profile', array('query' => array('destination' => current_path())))));
       $form['submit']['#disabled'] = TRUE;
       $form['submit']['#value'] = t('Fill in your profile account before registration');
     }
-    else if ($existing_order_id = _ef_user_has_bought_products(array($product->product_id))) {
+    elseif (!og_get_groups_by_user(NULL, 'node')) {
+      $form['message']['#markup'] = t('Please !link before your registration', array('!link' => l(t('join a group'), 'groups', array('query' => array('destination' => current_path())))));
+      $form['submit']['#disabled'] = TRUE;
+      $form['submit']['#value'] = t('Join a group before your registration.');
+    }
+    elseif ($existing_order_id = _ef_user_has_bought_products(array($product->product_id))) {
       // Product has already been purchased!
       // We only want users to register for a program once
       unset($form['line_item_fields']);
@@ -73,7 +78,7 @@ function ef_events_form_commerce_cart_add_to_cart_form_alter(&$form, &$form_stat
       $form['#suffix'] = l(t('View my registration'), $order_path);
     }
     // Change the "Add to Cart" button text
-    else if ($form['submit']['#disabled'] != TRUE) {
+    elseif ($form['submit']['#disabled'] != TRUE) {
       $form['submit']['#value'] = t('Attend');
       $form['submit']['#attributes']['class'][] = 'action-item-primary';
     }
@@ -92,13 +97,13 @@ function ef_events_commerce_cart_product_add($order, $product, $quantity, $line_
 
     // Loop through the line items.
     foreach ($order_wrapper->commerce_line_items as $delta => $line_item_wrapper) {
-      // If this is the product we're keeping, make sure the quantity is always 1.
+      // If this is the product we're keeping, make sure the quantity is 1.
       if ($line_item_wrapper->commerce_product->product_id->value() == $product->product_id) {
         $line_item_wrapper->quantity->set(1);
         $line_item_wrapper->save();
       }
       else {
-        // Remove any other product from the order
+        // Remove any other product from the order.
         commerce_cart_order_product_line_item_delete($order, $line_item_wrapper->line_item_id->value());
       }
     }
@@ -125,7 +130,7 @@ function _ef_user_has_bought_products($product_ids = array()) {
   }
 
   // User has ordered product previously.
-  if (array_key_exists($user->uid, $result)){
+  if (array_key_exists($user->uid, $result)) {
     return $result[$user->uid]->order_id;
   }
 
