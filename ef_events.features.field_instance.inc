@@ -166,7 +166,8 @@ function ef_events_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'commerce_product-registration-commerce_stock_override'
+  // Exported field_instance:
+  // 'commerce_product-registration-commerce_stock_override'
   $field_instances['commerce_product-registration-commerce_stock_override'] = array(
     'bundle' => 'registration',
     'commerce_cart_settings' => array(
